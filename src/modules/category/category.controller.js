@@ -3,6 +3,7 @@ import createError from "../../utils/error.js"
 import handleAsync from "../../utils/handleAsync.js"
 import createResponse from "../../utils/response.js"
 import categorySchema from "./category.schema.js"
+import findByIdCategory from "./category.service.js"
 
 
 // Add 
@@ -26,12 +27,12 @@ export const getAllCategory = handleAsync(
 // GetDetail
 export const getDetailCategory = handleAsync(
     async (req, res, next) => {
-        const { id } = req.params
-        if (id) {
-            const data = await Category.findById(id)
-            return res.json(createResponse(true, 200, "Get Detail Category Successfully !", data))
+        const data = await findByIdCategory(req.params.id)
+        console.log(data)
+        if (!data) {
+            next(createError(false, 404, "Not Found Category !"))
         }
-        next(createError(false, 404, "Not Found Category !"))
+        return res.json(createResponse(true, 200, "Get Detail Category Successfully !",data))
     }
 )
 // Update
@@ -69,7 +70,7 @@ export const softDeleteCategory = handleAsync(
 )
 // Restore
 export const restoreCategory = handleAsync(
-     async (req, res, next) => {
+    async (req, res, next) => {
         const { id } = req.params
         if (id) {
             await Category.findByIdAndUpdate(id, { deletedAt: null })

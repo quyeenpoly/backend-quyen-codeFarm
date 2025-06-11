@@ -19,4 +19,5 @@ categoryRoutes.use(validBodyRequest(categorySchema))
 
 categoryRoutes.post('/', createCategory);
 categoryRoutes.patch('/:id', updateCategory);
+
 export default categoryRoutes;
