@@ -1,7 +1,7 @@
-import Product from "../models/Product.js"
-import createError from "../utils/error.js"
-import handleAsync from "../utils/handleAsync.js"
-import createResponse from "../utils/response.js"
+import Product from "./product.model.js"
+import createError from "../../utils/error.js"
+import handleAsync from "../../utils/handleAsync.js"
+import createResponse from "../../utils/response.js"
 
 export const createProducts = handleAsync(
     async(req, res, next)=>{
