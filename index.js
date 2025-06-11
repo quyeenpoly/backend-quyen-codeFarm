@@ -1,9 +1,8 @@
-
 import  express  from 'express';
 import router from './src/routes/index.js';
-import connectDB from './src/configs/db.js';
-import { HOST, PORT } from './src/configs/enviroments.js';
-import errorHandler from './src/middlewares/errorHandle.js';
+import connectDB from './src/common/configs/connectDB.js';
+import { HOST, PORT } from './src/common/configs/environments.js';
+import errorHandler from './src/common/middlewares/errorHandle.js';
 import cors from "cors"
 
 connectDB()

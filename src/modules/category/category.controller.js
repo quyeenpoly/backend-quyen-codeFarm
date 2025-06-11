@@ -1,11 +1,14 @@
-import Category from "../models/Category.js"
-import createError from "../utils/error.js"
-import handleAsync from "../utils/handleAsync.js"
-import createResponse from "../utils/response.js"
+import Category from "./category.model.js"
+import createError from "../../utils/error.js"
+import handleAsync from "../../utils/handleAsync.js"
+import createResponse from "../../utils/response.js"
+import categorySchema from "./category.schema.js"
+
 
 // Add 
 export const createCategory = handleAsync(
     async (req, res, next) => {
+     
         const existing = await Category.findOne({ title: req.body.title })
         if (existing) next(createError(400, "Category Already Exists !"))
         const data = await Category.create(req.body)
