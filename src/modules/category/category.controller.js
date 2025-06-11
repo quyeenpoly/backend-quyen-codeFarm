@@ -8,7 +8,6 @@ import categorySchema from "./category.schema.js"
 // Add 
 export const createCategory = handleAsync(
     async (req, res, next) => {
-     
         const existing = await Category.findOne({ title: req.body.title })
         if (existing) next(createError(400, "Category Already Exists !"))
         const data = await Category.create(req.body)

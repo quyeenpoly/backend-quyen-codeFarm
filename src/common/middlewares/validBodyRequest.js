@@ -1,11 +1,13 @@
-import createError from "../../utils/error"
-import { parse } from '../../../node_modules/zod/dist/esm/v4/classic/parse';
 
-const validBodyRequest = (req, res, next) =>{
-    try {
-        const data = z.parse(req.body);
-    } catch (error) {
-        console.log(error)
-        next(createError(400, {"Valid body request" : JSON.stringify(error)}))
-    }
-}
+const validBodyRequest = (schema) => (req, res, next) => {
+	try {
+		const data = schema.parse(req.body);
+		req.data = data;
+		next();
+	} catch (err) {
+		const error = err.errors[0];
+		return res.status(400).json({ "Valid body request": `${error.path}: ${error.message}` });
+	}
+};
+
+export default validBodyRequest;
