@@ -12,17 +12,18 @@ export const createCategory = handleAsync(
         if (existing) next(createError(400, MESSAGES.CATEGORY.CREATE_ERROR_EXISTS))
         const data = await Category.create(req.body)
         return res.json(createResponse(true, 201
-            , MESSAGES.CATEGORY.CREATE_SUCCESS , data))
+            , MESSAGES.CATEGORY.CREATE_SUCCESS, data))
 
     }
 )
 // GetAll
-export const getAllCategory = handleAsync(
-    async (req, res, next) => {
-        const data = await Category.find()
-        return res.json(createResponse(true, 200, MESSAGES.CATEGORY.GET_SUCCESS , data))
-    }
-)
+export const getAllCategory = handleAsync(async (req, res, next) => {
+	const data = await Category.find();
+	if (!data || data.length === 0) {
+		return next(createError(404, MESSAGES.CATEGORY.NOT_FOUND));
+	}
+	return res.json(createResponse(true, 200, MESSAGES.CATEGORY.GET_SUCCESS, data));
+});
 // GetDetail
 export const getDetailCategory = handleAsync(
     async (req, res, next) => {
@@ -31,7 +32,7 @@ export const getDetailCategory = handleAsync(
         if (!data) {
             next(createError(false, 404, MESSAGES.CATEGORY.NOT_FOUND))
         }
-        return res.json(createResponse(true, 200, MESSAGES.CATEGORY.GET_BY_ID_SUCCESS ,data))
+        return res.json(createResponse(true, 200, MESSAGES.CATEGORY.GET_BY_ID_SUCCESS, data))
     }
 )
 // Update
@@ -57,35 +58,37 @@ export const deleteCategory = handleAsync(
     }
 )
 // Soft-Delete
-export const softDeleteCategory = handleAsync(
-    async (req, res, next) => {
-        const { id } = req.params
-        if (id) {
-           await Category.findOneAndUpdate(
-			{ id, deletedAt: null },
+export const softDeleteCategory = handleAsync(async (req, res, next) => {
+	const { id } = req.params;
+	if (id) {
+		const data = await Category.findOneAndUpdate(
+			{ _id: id, deletedAt: null },
 			{
 				deletedAt: new Date(),
+			},
+			{
+				new: true,
 			}
 		);
-            return res.json(createResponse(true, 200, MESSAGES.CATEGORY.SOFT_DELETE_SUCCESS))
-        }
-        next(createError(false, 404, MESSAGES.CATEGORY.SOFT_DELETE_FAILED))
-    }
-)
+		return res.json(createResponse(true, 200, MESSAGES.CATEGORY.SOFT_DELETE_SUCCESS, data));
+	}
+	next(createError(false, 404, MESSAGES.CATEGORY.SOFT_DELETE_FAILED));
+});
 // Restore
-export const restoreCategory = handleAsync(
-    async (req, res, next) => {
-        const { id } = req.params
-        if (id) {
-		await Category.findOneAndUpdate(
-			{ id, deletedAt: { $ne: null } },
+export const restoreCategory = handleAsync(async (req, res, next) => {
+	const { id } = req.params;
+	console.log(id);
+	if (id) {
+		const data = await Category.findOneAndUpdate(
+			{ _id: id },
 			{
 				deletedAt: null,
-			}
+			},
+			{ new: true }
 		);
+		console.log(data);
 		// ne = not equal
-		return res.json(createResponse(true, 200, MESSAGES.CATEGORY.RESTORE_SUCCESS));
+		return res.json(createResponse(true, 200, MESSAGES.CATEGORY.RESTORE_SUCCESS, data));
 	}
-        next(createError(false, 404, MESSAGES.CATEGORY.RESTORE_FAILED))
-    }
-)
+	next(createError(false, 404, MESSAGES.CATEGORY.RESTORE_FAILED));
+});
