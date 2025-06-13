@@ -4,6 +4,7 @@ import createResponse from "../../utils/response.js";
 import handleAsync from "../../utils/handleAsync.js";
 import MESSAGES from "../../common/constant/messages.js";
 
+
 export const createSubCategory = handleAsync(async (req, res, next) => {
 	const existing = await SubCategory.findOne({ title: req.body.title });
 	if (existing) return next(createError(400, MESSAGES.SUBCATEGORY.CREATE_ERROR_EXISTS));

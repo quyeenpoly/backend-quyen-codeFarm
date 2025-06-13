@@ -9,7 +9,7 @@ import {
 	updateSubCategory,
 } from "./subcategory.controller.js";
 import validBodyRequest from "../../common/middlewares/validBodyRequest.js";
-import categorySchema from "./subcategory.schema.js";
+import subcategorySchema from "./subcategory.schema.js";
 
 const subCategoryRoutes = Router();
 
@@ -20,7 +20,7 @@ subCategoryRoutes.delete("/delete/:id", deleteSubCategory);
 subCategoryRoutes.delete("/soft-delete/:id", softDeleteSubCategory);
 subCategoryRoutes.patch("/restore/:id", restoreSubCategory);
 
-subCategoryRoutes.use(validBodyRequest(categorySchema));
+subCategoryRoutes.use(validBodyRequest(subcategorySchema));
 subCategoryRoutes.post("/", createSubCategory);
 subCategoryRoutes.patch("/:id", updateSubCategory);
 
