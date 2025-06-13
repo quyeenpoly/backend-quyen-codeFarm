@@ -7,4 +7,4 @@ const categorySchema = z.object({
     deletedAt: z.date().nullable().optional()
     
 })
-export default categorySchema
+export default categorySchema;
