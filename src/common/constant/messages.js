@@ -57,6 +57,7 @@ const MESSAGES = {
 	CATEGORY: {
 		GET_SUCCESS: "Lấy danh sách danh mục thành công",
 		GET_BY_ID_SUCCESS: "Lấy thông tin danh mục thành công",
+		
 		CREATE_SUCCESS: "Tạo danh mục thành công",
 		SOFT_DELETE_SUCCESS: "Xóa mềm danh mục thành công",
 		RESTORE_SUCCESS: "Khôi phục danh mục thành công",
@@ -74,11 +75,14 @@ const MESSAGES = {
 	},
 
 	SUBCATEGORY: {
+		CREATE_ERROR_PARENT_ID: "Danh mục cha là bắt buộc",
 		GET_SUCCESS: "Lấy danh sách danh mục con thành công",
 		GET_BY_ID_SUCCESS: "Lấy thông tin danh mục con thành công",
 		CREATE_SUCCESS: "Tạo danh mục con thành công",
 		UPDATE_SUCCESS: "Cập nhật danh mục con thành công",
 		DELETE_SUCCESS: "Xóa danh mục con thành công",
+		SOFT_DELETE_SUCCESS: "Xóa mềm danh mục con thành công",
+		RESTORE_SUCCESS: "Khôi phục danh mục con thành công",
 		CREATE_ERROR: "Lỗi khi tạo danh mục con",
 		UPDATE_ERROR: "Lỗi khi cập nhật danh mục con",
 		DELETE_ERROR: "Lỗi khi xóa danh mục con",
