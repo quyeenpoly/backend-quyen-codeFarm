@@ -11,7 +11,11 @@ connectDB()
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+	origin: 'http://localhost:5173', // chỉ cho phép truy cập từ địa chỉ này
+	credentials: true, // cho phép gửi cookie từ client
+	
+}));
 
 app.use(express.json())
 
