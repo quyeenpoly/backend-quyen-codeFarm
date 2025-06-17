@@ -1,32 +1,4 @@
-// Table Product {
-//   id string
-//   title string
-//   thumbnail string
-//   description string
-//   shortDescription string
-//   specifications object
-//   price number
-//   oldPrice number
-//   slug string
-//   brand string [ref: > Brand.id]
-//   subCategory string [ref: > SubCategory.id]
-//   color productColors
-//   size productSizes
-//   stock number
-//   soldCount number
-
 import mongoose from "mongoose";
-
-//   seoTitle string
-//   seoDescription string
-//   tags array
-
-//   deletedAt datetime [default: null]
-//   updatedAt datetime [default: `now()`]
-//   deletedBy string [ref: > User.id]
-//   updatedBy string [ref: > User.id]
-// }
-
 const productSchema = new mongoose.Schema(
 	{
 		title: { type: String, required: true },
@@ -66,3 +38,31 @@ const productSchema = new mongoose.Schema(
 const Product = mongoose.model("Product", productSchema);
 
 export default Product;
+
+
+// Table Product {
+//   id string
+//   title string
+//   thumbnail string
+//   description string
+//   shortDescription string
+//   specifications object
+//   price number
+//   oldPrice number
+//   slug string
+//   brand string [ref: > Brand.id]
+//   subCategory string [ref: > SubCategory.id]
+//   color productColors
+//   size productSizes
+//   stock number
+//   soldCount number
+
+//   seoTitle string
+//   seoDescription string
+//   tags array
+
+//   deletedAt datetime [default: null]
+//   updatedAt datetime [default: `now()`]
+//   deletedBy string [ref: > User.id]
+//   updatedBy string [ref: > User.id]
+// }
