@@ -7,20 +7,35 @@
 //   slug string
 // }
 
-const brandSchema = new mongoose.Schema(
-	{
-		title: { type: String, required: true },
-		logoUrl: { type: String, required: true },
-		description: { type: String, default: "" },
-		deletedAt: { type: Date, default: null },
-		slug: { type: String, required: true, unique: true },
+import mongoose, { Schema } from "mongoose";
+
+const brandSchema = new Schema({
+	title: {
+		type: String,
+		unique: true,
+		required: true
 	},
-	{
-		versionKey: false,
-		timestamps: true,
+	description: {
+		type: String,
+	},
+	slug: {
+		type: String,
+		unique: true,
+		required: true
+	},
+	image: {
+		type: String,
+		required: true
+	},
+	status: {
+		type: Number,
+		default: 1
+	},
+	deletedAt: {
+		type: Date,
+		default: null
 	}
-);
+}, { versionKey: false, timestamps: true });
 
-const Brand = mongoose.model("Brand", brandSchema);
 
-export default Brand;
+export default mongoose.model("Brand", brandSchema)

@@ -1,37 +1,4 @@
-
-import mongoose from "mongoose";
-const productSchema = new mongoose.Schema(
-	{
-		title: { type: String, required: true },
-		thumbnail: { type: String, required: true },
-		description: { type: String, default: "" },
-		shortDescription: { type: String, default: "" },
-		specifications: { type: Object, default: {} },
-		price: { type: Number, required: true },
-		oldPrice: { type: Number, default: 0 },
-		slug: { type: String, required: true, unique: true },
-		brand: { type: mongoose.Schema.Types.ObjectId, ref: "Brand", required: true },
-		subCategory: { type: mongoose.Schema.Types.ObjectId, ref: "SubCategory", required: true },
-		color: { type: [String], default: [] }, // Assuming productColors is an array of strings
-		size: { type: [String], default: [] }, // Assuming productSizes is an array of strings
-		stock: { type: Number, default: 0 },
-		soldCount: { type: Number, default: 0 },
-
-		seoTitle: { type: String, default: "" },
-		seoDescription: { type: String, default: "" },
-		tags: { type: [String], default: [] },
-
-		deletedAt: { type: Date, default: null },
-		deletedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-	},
-	{ versionKey: false, timestamps: true }
-);
-
-const Product = mongoose.model("Product", productSchema);
-
-export default Product;
-
-// Table Product {Add commentMore actions
+// Table Product {
 //   id string
 //   title string
 //   thumbnail string
@@ -47,11 +14,55 @@ export default Product;
 //   size productSizes
 //   stock number
 //   soldCount number
+
+import mongoose from "mongoose";
+
 //   seoTitle string
 //   seoDescription string
 //   tags array
+
 //   deletedAt datetime [default: null]
 //   updatedAt datetime [default: `now()`]
 //   deletedBy string [ref: > User.id]
 //   updatedBy string [ref: > User.id]
 // }
+
+const productSchema = new mongoose.Schema(
+	{
+		title: { type: String, required: true },
+		thumbnail: { type: String, required: true },
+		description: { type: String, default: "" },
+		shortDescription: { type: String, default: "" },
+		specifications: { type: Object, default: {} },
+		priceDefault: { type: Number, required: true },
+		slug: { type: String, required: true, unique: true },
+		brandId: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Brand",
+			required: true,
+		},
+		subCategoryId: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "SubCategory",
+			required: true,
+		},
+		soldCount: { type: Number, default: 0 },
+		variants: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "Variant",
+			},
+		],
+		seoTitle: { type: String, default: "" },
+		seoDescription: { type: String, default: "" },
+		tags: { type: [String], default: [] },
+
+		deletedAt: { type: Date, default: null },
+		deletedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+	},
+	{ versionKey: false, timestamps: true }
+);
+
+const Product = mongoose.model("Product", productSchema);
+
+export default Product;

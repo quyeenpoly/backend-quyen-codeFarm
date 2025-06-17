@@ -1,3 +1,5 @@
+
+
 const MESSAGES = {
 	GENERAL: {
 		SUCCESS: "Thành công",
@@ -127,6 +129,23 @@ const MESSAGES = {
 		RESET_PASSWORD_SUBJECT: "Đặt lại mật khẩu cho tài khoản của bạn",
 		VERIFICATION_BODY: "Vui lòng nhấp vào liên kết sau để xác minh tài khoản của bạn: ",
 		RESET_PASSWORD_BODY: "Bạn đã yêu cầu đặt lại mật khẩu. Nhấn vào link dưới đây để tiếp tục: ",
+	},
+	BRAND: {
+		GET_SUCCESS: "Lấy danh sách thương hiệu thành công",
+		GET_BY_ID_SUCCESS: "Lấy thông tin thương hiệu thành công",
+		CREATE_SUCCESS: "Tạo thương hiệu thành công",
+		UPDATE_SUCCESS: "Cập nhật thương hiệu thành công",
+		DELETE_SUCCESS: "Xóa thương hiệu thành công",
+		CREATE_ERROR: "Lỗi khi tạo thương hiệu",
+		CREATE_ERROR_EXISTS: "Thương hiệu đã tồn tại",
+		UPDATE_ERROR: "Lỗi khi cập nhật thương hiệu",
+		DELETE_ERROR: "Lỗi khi xóa thương hiệu",
+		NOT_FOUND: "Không tìm thấy thương hiệu",
+		NAME_REQUIRED: "Tên thương hiệu là bắt buộc",
+		SOFT_DELETE_FAILED: "Xóa mềm thương hiệu thất bại",
+		SOFT_DELETE_SUCCESS: "Xóa mềm thương hiệu thành công",
+		RESTORE_SUCCESS: "Khôi phục thương hiệu thành công",
+		RESTORE_FAILED: "Khôi phục thương hiệu thất bại",
 	},
 };
 
