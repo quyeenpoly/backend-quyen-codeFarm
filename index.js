@@ -8,19 +8,23 @@ import setupSwagger from "./src/common/configs/swagger-config.js";
 
 connectDB()
 
-
 const app = express();
 
-app.use(cors());
+// Middleware
+app.use(cors()); // Cho phép tất cả các nguồn trong môi trường development
 
-app.use(express.json())
+app.use(express.json());
+// Routes
+app.use('/api', router);
 
 
-app.use("/api", router)
+// Error handler
+app.use(errorHandler);
+
+// Setup Swagger
 setupSwagger(app);
-app.use(errorHandler)
 
-app.listen(PORT,  () => {
-	console.log(`Server is running on: http://${HOST}:${PORT}/api`);
+app.listen(PORT, HOST, () => {
+	console.log(`Server is running on http://${HOST}:${PORT}`);
 	console.log(`Swagger Docs available at http://${HOST}:${PORT}/api-docs`)
 });
