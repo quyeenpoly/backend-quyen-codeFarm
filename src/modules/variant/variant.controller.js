@@ -14,7 +14,7 @@ export const createVariant = handleAsync(async (req, res, next) => {
 export const getAllVariant = handleAsync(async (req, res, next) => {
     const data = await Variant.find()
         .populate('productId', 'title')
-        .populate('attributeValues')
+        .populate('attributeValueId', 'title')
     if (!data || data.length === 0) {
         return next(createError(404, MESSAGES.VARIANT.NOT_FOUND))
     }
