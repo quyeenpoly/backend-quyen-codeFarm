@@ -19,4 +19,5 @@ router.use("/attribute-values", attributeValueRoutes);
 router.use("/variants", variantRoutes);
 router.use("/auth", authRoutes);
 
+
 export default router
