@@ -1,7 +1,7 @@
 import dotenv from "dotenv"
 
 dotenv.config({
-    path: ".env", // Load biến môi trường từ file .env.{NODE_ENV}Add commentMore actions
+	path: ".env", // Load biến môi trường từ file .env.{NODE_ENV}Add commentMore actions
 	debug: true, // Hiển thị thông báo debug
 	encoding: "utf8", // Encoding của file .env
 	silent: true, // Không hiển thị thông báo lỗi nếu file .env không tồn tại
@@ -12,4 +12,13 @@ dotenv.config({
 	overrideProcessEnv: true, // Ghi đè các biến môi trường đã tồn tại trong process.env
 })
 
-export const {DB_URI, HOST, PORT} = process.env
+export const {
+	DB_URI,
+	HOST,
+	PORT,
+	JWT_SECRET_KEY,
+	JWT_EXPIRES_IN,
+	JWT_SECRET_KEY_FOR_EMAIL,
+	JWT_EXPIRES_IN_FOR_EMAIL ,
+	EMAIL_PASSWORD
+} = process.env 
