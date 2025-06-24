@@ -11,7 +11,6 @@ export const createAttribute = handleAsync(async (req, res, next) => {
     const data = await Attribute.create(req.body)
     return res.json(createResponse(true, 201, MESSAGES.ATTRIBUTE.CREATE_SUCCESS, data))
 })
-
 // Get All
 export const getAllAttribute = handleAsync(async (req, res, next) => {
     const data = await Attribute.find()

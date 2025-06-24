@@ -9,11 +9,12 @@ import {
     softDeleteAttributeValue, 
     updateAttributeValue 
 } from "./attribute_value.controller.js";
+import validBodyRequest from "../../common/middlewares/validBodyRequest.js";
+import attributeValueSchema from "./attribute_value.schema.js";
 
 const attributeValueRoutes = Router();
 
-// thêm mới attribute value
-attributeValueRoutes.post('/', createAttributeValue);
+
 
 // Lấy tất cả attribute values
 attributeValueRoutes.get('/', getAllAttributeValue);
@@ -23,10 +24,7 @@ attributeValueRoutes.get('/by-attribute/:attributeId', getByAttribute);
 
 // Lấy chi tiết attribute value
 attributeValueRoutes.get('/:id', getDetailAttributeValue);
-
-// Sửa attribute value
-attributeValueRoutes.patch('/:id', updateAttributeValue);
-
+// ! la admin moi duoc truy cap
 // Xoá attribute value
 attributeValueRoutes.delete('/:id', deleteAttributeValue);
 
@@ -35,5 +33,11 @@ attributeValueRoutes.delete('/soft/:id', softDeleteAttributeValue);
 
 // Khôi phục attribute value
 attributeValueRoutes.patch('/restore/:id', restoreAttributeValue);
+
+attributeValueRoutes.use(validBodyRequest(attributeValueSchema)) // Thêm middleware để xác thực body request
+// thêm mới attribute value
+attributeValueRoutes.post('/', createAttributeValue);
+// Sửa attribute value
+attributeValueRoutes.patch('/:id', updateAttributeValue);
 
 export default attributeValueRoutes; 

@@ -1,17 +1,17 @@
-import Variant from "./variant.model.js"
+import Variant from "./product_variant.model.js"
 import createError from "../../utils/error.js"
 import handleAsync from "../../utils/handleAsync.js"
 import createResponse from "../../utils/response.js"
 import MESSAGES from "../../common/constant/messages.js"
 
 // Create
-export const createVariant = handleAsync(async (req, res, next) => {
+export const createProductVariant = handleAsync(async (req, res, next) => {
     const data = await Variant.create(req.body)
     return res.json(createResponse(true, 201, MESSAGES.VARIANT.CREATE_SUCCESS, data))
 })
 
 // Get All
-export const getAllVariant = handleAsync(async (req, res, next) => {
+export const getAllProductVariant = handleAsync(async (req, res, next) => {
     const data = await Variant.find()
         .populate('productId', 'title')
         .populate('attributeValueId', 'title')
@@ -22,7 +22,7 @@ export const getAllVariant = handleAsync(async (req, res, next) => {
 })
 
 // Get Detail
-export const getDetailVariant = handleAsync(async (req, res, next) => {
+export const getDetailProductVariant = handleAsync(async (req, res, next) => {
     const data = await Variant.findById(req.params.id)
         .populate('productId', 'title')
         .populate('attributeValues')
@@ -33,7 +33,7 @@ export const getDetailVariant = handleAsync(async (req, res, next) => {
 })
 
 // Update
-export const updateVariant = handleAsync(async (req, res, next) => {
+export const updateProductVariant = handleAsync(async (req, res, next) => {
     const { id } = req.params
     if (id) {
         const data = await Variant.findByIdAndUpdate(id, req.body, { new: true })
@@ -45,7 +45,7 @@ export const updateVariant = handleAsync(async (req, res, next) => {
 })
 
 // Delete
-export const deleteVariant = handleAsync(async (req, res, next) => {
+export const deleteProductVariant = handleAsync(async (req, res, next) => {
     const { id } = req.params
     if (id) {
         const data = await Variant.findByIdAndDelete(id)
@@ -55,7 +55,7 @@ export const deleteVariant = handleAsync(async (req, res, next) => {
 })
 
 // Soft Delete
-export const softDeleteVariant = handleAsync(async (req, res, next) => {
+export const softDeleteProductVariant = handleAsync(async (req, res, next) => {
     const { id } = req.params
     if (id) {
         const data = await Variant.findOneAndUpdate(
@@ -72,7 +72,7 @@ export const softDeleteVariant = handleAsync(async (req, res, next) => {
 })
 
 // Restore
-export const restoreVariant = handleAsync(async (req, res, next) => {
+export const restoreProductVariant = handleAsync(async (req, res, next) => {
     const { id } = req.params
     if (id) {
         const data = await Variant.findOneAndUpdate(

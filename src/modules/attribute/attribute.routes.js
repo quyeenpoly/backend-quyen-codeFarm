@@ -1,4 +1,5 @@
 import { Router } from "express";
+import validBodyRequest from '../../common/middlewares/validBodyRequest.js';
 import { 
     createAttribute, 
     deleteAttribute, 
@@ -6,23 +7,18 @@ import {
     getDetailAttribute, 
     restoreAttribute, 
     softDeleteAttribute, 
-    updateAttribute 
+    updateAttribute,
 } from "./attribute.controller.js";
+import attributeSchema from "./attribute.schema.js";
 
 const attributeRoutes = Router();
-
-// Thêm mới attribute
-attributeRoutes.post('/', createAttribute);
-
 // Lấy tất cả attribute
 attributeRoutes.get('/', getAllAttribute);
 
 // Lấy chi tiết attribute
 attributeRoutes.get('/:id', getDetailAttribute);
 
-// Sửa attribute
-attributeRoutes.put('/:id', updateAttribute);
-
+// ! la admin moi duoc truy cap
 // Xoá attribute
 attributeRoutes.delete('/:id', deleteAttribute);
 
@@ -31,5 +27,13 @@ attributeRoutes.delete('/soft-delete/:id', softDeleteAttribute);
 
 // Khôi phục attribute
 attributeRoutes.patch('/restore/:id', restoreAttribute);
+
+attributeRoutes.use(validBodyRequest(attributeSchema))
+// Thêm mới attribute
+attributeRoutes.post('/', createAttribute);
+// Sửa attribute
+attributeRoutes.put('/:id', updateAttribute);
+
+
 
 export default attributeRoutes; 

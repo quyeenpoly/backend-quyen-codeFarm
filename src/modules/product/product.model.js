@@ -5,7 +5,6 @@ const productSchema = new mongoose.Schema(
 		thumbnail: { type: String, required: true },
 		description: { type: String, default: "" },
 		shortDescription: { type: String, default: "" },
-		specifications: { type: Object, default: {} },
 		priceDefault: { type: Number, required: true },
 		slug: { type: String, required: true, unique: true },
 		brandId: {
@@ -23,6 +22,7 @@ const productSchema = new mongoose.Schema(
 			{
 				type: mongoose.Schema.Types.ObjectId,
 				ref: "Variant",
+				required: true,
 			},
 		],
 		seoTitle: { type: String, default: "" },

@@ -9,7 +9,6 @@ const sendEmail = async (email, subject, text) => {
 			pass: EMAIL_PASSWORD,
 		},
 	});
-
 	const mailOptions = {
 		from: "Quang Quyen <",
 		to: email,
