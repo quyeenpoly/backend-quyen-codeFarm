@@ -8,8 +8,8 @@ const endpointsFiles = ["./src/routes/index.js"]; // chỉnh sửa theo đườn
 
 const swaggerConfig = {
 	info: {
-		title: "Backend API Codefarm Ecommerce K01 ThayHoangJS",
-		description: "API Codefarm By ThayHoangJS",
+		title: "Backend API Codefarm Ecommerce K01 QuangQuyen",
+		description: "API Codefarm By QuangQuyen",
 		version: "1.0.0",
 	},
 	host: `${HOST}:${PORT}`,

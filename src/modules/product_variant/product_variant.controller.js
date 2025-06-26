@@ -7,6 +7,9 @@ import MESSAGES from "../../common/constant/messages.js"
 // Create
 export const createProductVariant = handleAsync(async (req, res, next) => {
     const data = await Variant.create(req.body)
+    if (!data) {
+        return next(createError(400, MESSAGES.VARIANT.CREATE_ERROR))
+    }
     return res.json(createResponse(true, 201, MESSAGES.VARIANT.CREATE_SUCCESS, data))
 })
 
@@ -31,7 +34,7 @@ export const getDetailProductVariant = handleAsync(async (req, res, next) => {
     }
     return res.json(createResponse(true, 200, MESSAGES.VARIANT.GET_BY_ID_SUCCESS, data))
 })
-
+// okkkkkk
 // Update
 export const updateProductVariant = handleAsync(async (req, res, next) => {
     const { id } = req.params
