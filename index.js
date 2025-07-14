@@ -1,4 +1,4 @@
-import  express  from 'express';
+import express  from 'express';
 import router from './src/routes/index.js';
 import connectDB from './src/common/configs/connectDB.js';
 import { HOST, PORT } from './src/common/configs/environments.js';

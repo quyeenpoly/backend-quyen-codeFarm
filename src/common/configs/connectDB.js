@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 import { DB_URI } from "./environments.js";
-
-
 function connectDB() {
 	mongoose
 		.connect(DB_URI)
